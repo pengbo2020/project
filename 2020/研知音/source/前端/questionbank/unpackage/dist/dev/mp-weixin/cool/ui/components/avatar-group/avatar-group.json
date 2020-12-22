@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "cl-avatar": "/cool/ui/components/avatar/avatar"
+  }
+}

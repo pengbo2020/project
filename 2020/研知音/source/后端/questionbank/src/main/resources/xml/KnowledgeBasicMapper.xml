@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.java.project.mapper.KnowledgeBasicMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.java.project.entity.KnowledgeBasic">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="md5" property="md5" />
+        <result column="creator" property="creator" />
+        <result column="create_at" property="createAt" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, name, md5, creator, create_at
+    </sql>
+
+    <select id="selectQuestionKnowledge" resultType="com.java.project.entity.KnowledgeBasic">
+        select knowledge_basic.* from knowledge_basic,question_knowledge where question_knowledge.question_id=#{qid} and knowledge_basic.id = question_knowledge.knowledge_basic_id
+    </select>
+    <select id="getPage" resultType="com.java.project.entity.KnowledgeBasic">
+    select *from knowledge_basic limit #{offset},#{ps}
+    </select>
+    <select id="getPageByChapterId" resultType="com.java.project.entity.KnowledgeBasic">
+        select knowledge_basic.*from knowledge_basic,chapter_knowledge where chapter_knowledge.knowledge_basic_id=knowledge_basic.id and chapter_knowledge.chapter_id = #{cid} limit #{pn},#{ps}
+    </select>
+
+
+    <select id="getCollectionPageByChapterId" resultType="com.java.project.entity.KnowledgeBasic">
+       select knowledge_basic.* from user_knowledge,chapter_knowledge,knowledge_basic where user_knowledge.user_id=#{uid} and user_knowledge.learned=1 and user_knowledge.knowledge_id=chapter_knowledge.knowledge_basic_id and chapter_knowledge.knowledge_basic_id=knowledge_basic.id and chapter_knowledge.chapter_id=#{cid} limit #{pn},#{ps}
+    </select>
+
+</mapper>

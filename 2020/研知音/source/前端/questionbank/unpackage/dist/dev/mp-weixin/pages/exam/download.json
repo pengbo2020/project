@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "缓 存",
+  "usingComponents": {
+    "cl-card": "/cool/ui/components/card/card",
+    "cl-list": "/cool/ui/components/list/list",
+    "cl-popup": "/cool/ui/components/popup/popup",
+    "cl-row": "/cool/ui/components/row/row",
+    "cl-col": "/cool/ui/components/col/col",
+    "cl-icon": "/cool/ui/components/icon/icon"
+  }
+}

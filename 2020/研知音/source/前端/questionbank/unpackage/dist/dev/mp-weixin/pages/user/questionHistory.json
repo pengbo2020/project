@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "cl-icon": "/cool/ui/components/icon/icon",
+    "cl-button": "/cool/ui/components/button/button",
+    "cl-card": "/cool/ui/components/card/card",
+    "cl-noticebar": "/cool/ui/components/noticebar/noticebar"
+  }
+}

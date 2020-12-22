@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.java.project.mapper.ChapterKnowledgeMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.java.project.entity.ChapterKnowledge">
+        <id column="id" property="id" />
+        <result column="chapter_id" property="chapterId" />
+        <result column="knowledge_basic_id" property="knowledgeBasicId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, chapter_id, knowledge_basic_id
+    </sql>
+
+    <select id="selectUserCount" resultType="int">
+       select count(user_knowledge.knowledge_id) from user_knowledge,chapter_knowledge where user_knowledge.user_id=#{uid} and chapter_knowledge.knowledge_basic_id=user_knowledge.knowledge_id and chapter_knowledge.chapter_id=#{cid}
+    </select>
+
+    <select id="selectKNum" resultType="int">
+      select count(chapter_knowledge.knowledge_basic_id) from chapter_knowledge where chapter_knowledge.chapter_id in (select id from chapter where pid in( select id from chapter where pid=#{pid}))
+    </select>
+
+    <select id="selectCollectionChapter" resultType="com.java.project.entity.Chapter">
+       select *from chapter where id in(select chapter.pid from chapter where id in (select chapter_knowledge.chapter_id from user_knowledge,chapter_knowledge where user_knowledge.knowledge_id=chapter_knowledge.knowledge_basic_id and user_knowledge.user_id=#{uid} and user_knowledge.learned=1)) and pid=#{pid}
+    </select>
+
+    <select id="selectCollectionChildChapter" resultType="com.java.project.entity.Chapter">
+       select chapter.* from chapter where id in (select chapter_knowledge.chapter_id from user_knowledge,chapter_knowledge where user_knowledge.knowledge_id=chapter_knowledge.knowledge_basic_id and user_knowledge.user_id=#{uid} and user_knowledge.learned=1) and chapter.pid=#{pid}
+    </select>
+
+
+    <select id="selectCollectionUserCount" resultType="int">
+       select count(*)from user_knowledge,chapter_knowledge where user_knowledge.knowledge_id=chapter_knowledge.knowledge_basic_id and user_knowledge.learned=1 and user_knowledge.user_id=#{uid} and chapter_knowledge.chapter_id=#{cid}
+    </select>
+
+</mapper>

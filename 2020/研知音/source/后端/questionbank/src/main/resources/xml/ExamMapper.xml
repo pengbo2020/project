@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.java.project.mapper.ExamMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.java.project.entity.Exam">
+        <id column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="type" property="type" />
+        <result column="name" property="name" />
+        <result column="create_at" property="createAt" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, user_id, type, name, create_at
+    </sql>
+    <select id="selectExam" resultType="com.java.project.entity.Exam">
+      select * from exam where type=#{type} and id not in(select exam_id id from user_exam where user_id=#{uid}) order by rand() limit 1
+    </select>
+
+    <select id="selectRandomOne" resultType="com.java.project.entity.Exam">
+     select *from exam where type=#{type} order by rand() limit 1
+    </select>
+
+    <select id="getQuestionsByExamIdAndType" resultType="com.java.project.entity.Question">
+     select question.* from question,exam,exam_question where exam_question.exam_id=#{eid} and exam_question.question_id=question.id and question.type=#{type}
+    </select>
+
+    <select id="getUserExams" resultType="com.java.project.entity.Exam">
+      select exam.id,exam.type,exam.name,user_exam.create_at create_at from exam ,user_exam where user_exam.exam_id=exam.id and user_exam.user_id=#{uid} order by user_exam.create_at desc
+     </select>
+
+    <select id="selectChaptersByPid" resultType="com.java.project.vo.QuestionNum">
+        select chapter.*,count(chapter_question.id) cQnum,count(chapter_question.chapter_id) uQnum from chapter,exam_question,chapter_question where chapter.id=chapter_question.chapter_id and chapter_question.question_id=exam_question.question_id and exam_question.exam_id=#{eid} and chapter.pid=#{pid} group by chapter.id
+    </select>
+
+</mapper>

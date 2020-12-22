@@ -1,0 +1,558 @@
+{
+	"pages": [
+		{
+			"path": "pages/index/index",
+			"style": {
+				"app-plus": {
+					
+					"navigationBarTitleText": "题库"
+				}
+			}
+		},
+		/* {
+			"path": "pages/index/index2",
+			"style": {
+				"app-plus": {
+					"titleNView": false
+				}
+			}
+		}, */
+		/* {
+			"path": "pages/exam/index",
+			"style": {
+				"navigationBarTitleText": "组卷"
+			}
+		}, */
+		{
+		    "path" : "pages/exam/answers",
+		    "style" : {
+				"navigationBarTitleText": "答 案"
+			}
+		}
+			
+		,/* {
+		    "path" : "pages/exam/modify",
+		    "style" : {
+				"navigationBarTitleText": "笔 记"
+			}
+		}
+		, */
+		{
+			"path": "pages/exam/downloadfile",
+			"style": {
+				"navigationBarTitleText": "缓存文件"
+			}
+		}
+		/* ,{
+		    "path" : "pages/note/note",
+		    "style" : {}
+		} */
+		/* ,{
+		    "path" : "pages/note/test",
+		    "style" : {}
+		} */
+		,{
+		    "path" : "pages/exam/start",
+		    "style" : {
+				"navigationBarTitleText": "考 试"
+			}
+		}
+	    /* ,{
+            "path" : "pages/user/user",
+            "style" : {}
+        } */
+        ,{
+            "path" : "pages/user/history",
+            "style" : {
+				"navigationBarTitleText": "历 史"
+			}
+        }
+       /* ,{
+            "path" : "pages/user/wrongQuestions",
+            "style" : {
+				
+			}
+        } */
+        /* ,{
+            "path" : "pages/user/download",
+            "style" : {}
+        } */
+        ,{
+            "path" : "pages/note/modify",
+            "style" : {
+				"navigationBarTitleText": "笔 记"
+			}
+        }
+        ,{
+            "path" : "pages/user/questions",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/user/questionHistory",
+            "style" : {}
+        }
+       /* ,{
+            "path" : "pages/user/history1",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/user/history2",
+            "style" : {}
+        } */
+        ,{
+            "path" : "pages/exam/questions",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/exam/questionList",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/exam/download",
+            "style" : {
+				"navigationBarTitleText": "缓 存"
+			}
+        }
+        /* ,{
+            "path" : "pages/knowledge/knowledge",
+            "style" : {}
+        } */
+        ,{
+            "path" : "pages/knowledge/index",
+            "style" : {
+				/* "navigationBarTitleText": "知识点" */
+			}
+        }
+       /* ,{
+            "path" : "pages/user/login",
+            "style" : {}
+        } */
+        ,{
+            "path" : "components/global",
+            "style" : {}
+        }
+        
+        /* ,{
+            "path" : "pages/user/questions2",
+            "style" : {}
+        } */
+        ,{
+            "path" : "pages/exam/zt",
+           "style": {
+           	"navigationBarTitleText": "真 题"
+           }
+        }
+        ,{
+            "path" : "pages/user/history_new",
+            "style" : {
+				"navigationBarTitleText": "习 题"
+			}
+        }
+        /* ,{
+            "path" : "pages/index/index_new",
+            "style" : {}
+        } */
+       /* ,{
+            "path" : "pages/user/login_new",
+            "style" : {}
+        } */
+        /* ,{
+            "path" : "pages/chapter/chapter",
+            "style" : {}
+        } */
+        ,{
+            "path" : "pages/chapter/index",
+            "style" : {
+				"navigationBarTitleText": "章 节"
+			}
+        }
+        ,{
+            "path" : "pages/chapter/questions",
+            "style" : {
+				"navigationBarTitleText": "章节练习"
+			}
+        }
+        ,{
+            "path" : "pages/exam/historyExamQuestions",
+            "style" : {}
+        }
+        /* ,{
+            "path" : "pages/user/login_new2",
+            "style" : {}
+        } */
+        /* ,{
+            "path" : "pages/index/test",
+            "style" : {}
+        } */
+        /* ,{
+            "path" : "pages/index/index_00",
+            "style" : {}
+        } */
+       /* ,{
+            "path" : "pages/news/news",
+            "style" : {}
+        } */
+        ,{
+            "path" : "pages/news/index",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/news/newsDetail",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/knowledge/chapterKnowledge",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/exam/examResult",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/index/practice",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/exam/startExam",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/user/chapterQuestions",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/user/questionsHistory",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/user/examHistory",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/knowledge/collection",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/knowledge/collectionKnow",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/knowledge/index_new",
+            "style" : {}
+        }
+        /* ,{
+            "path" : "pages/knowledge/index_new2",
+            "style" : {}
+        } */
+        ,{
+            "path" : "pages/news/newsDetail_new",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
+	/* "subPackages": [
+		{
+			"root": "pages/demo/basic",
+			"pages": [
+				{
+					"path": "button",
+					"style": {
+						"navigationBarTitleText": "Button 按钮"
+					}
+				},
+				{
+					"path": "input",
+					"style": {
+						"navigationBarTitleText": "Input 输入框"
+					}
+				},
+				{
+					"path": "image",
+					"style": {
+						"navigationBarTitleText": "Image 图片"
+					}
+				},
+				{
+					"path": "icon",
+					"style": {
+						"navigationBarTitleText": "Icon 图标"
+					}
+				},
+				{
+					"path": "tag",
+					"style": {
+						"navigationBarTitleText": "Tag 标签"
+					}
+				},
+				{
+					"path": "divider",
+					"style": {
+						"navigationBarTitleText": "Divider 分割线"
+					}
+				}
+			]
+		},
+		{
+			"root": "pages/demo/feedback",
+			"pages": [
+				{
+					"path": "toast",
+					"style": {
+						"navigationBarTitleText": "Toast 提示"
+					}
+				},
+				{
+					"path": "message",
+					"style": {
+						"navigationBarTitleText": "Message 消息提醒"
+					}
+				},
+				{
+					"path": "loading",
+					"style": {
+						"navigationBarTitleText": "Loading 加载"
+					}
+				}
+			]
+		},
+		{
+			"root": "pages/demo/form",
+			"pages": [
+				{
+					"path": "radio",
+					"style": {
+						"navigationBarTitleText": "Radio 单选框"
+					}
+				},
+				{
+					"path": "switch",
+					"style": {
+						"navigationBarTitleText": "Switch 开关"
+					}
+				},
+				{
+					"path": "checkbox",
+					"style": {
+						"navigationBarTitleText": "Checkbox 多选框"
+					}
+				},
+				{
+					"path": "select",
+					"style": {
+						"navigationBarTitleText": "Select 下拉框"
+					}
+				},
+				{
+					"path": "upload",
+					"style": {
+						"navigationBarTitleText": "Upload 上传"
+					}
+				},
+				{
+					"path": "rate",
+					"style": {
+						"navigationBarTitleText": "Rate 评分"
+					}
+				},
+				{
+					"path": "rules",
+					"style": {
+						"navigationBarTitleText": "Rules 校验"
+					}
+				}
+			]
+		},
+		{
+			"root": "pages/demo/operate",
+			"pages": [
+				{
+					"path": "loadmore",
+					"style": {
+						"navigationBarTitleText": "LoadMore 页底提示"
+					}
+				},
+				{
+					"path": "modal",
+					"style": {
+						"navigationBarTitleText": "Modal 模态框"
+					}
+				},
+				{
+					"path": "action-sheet",
+					"style": {
+						"navigationBarTitleText": "ActionSheet 底部菜单"
+					}
+				},
+				{
+					"path": "search",
+					"style": {
+						"navigationBarTitleText": "Search 搜索"
+					}
+				},
+				{
+					"path": "dropdown",
+					"style": {
+						"navigationBarTitleText": "Dropdown 下拉框"
+					}
+				}
+			]
+		},
+		{
+			"root": "pages/demo/nav",
+			"pages": [
+				{
+					"path": "tabs",
+					"style": {
+						"navigationBarTitleText": "Tabs 选项卡"
+					}
+				},
+				{
+					"path": "topbar",
+					"style": {
+						"navigationBarTitleText": "Topbar 顶部导航"
+					}
+				}
+			]
+		},
+		{
+			"root": "pages/demo/layout",
+			"pages": [
+				{
+					"path": "flex",
+					"style": {
+						"navigationBarTitleText": "Flex 布局"
+					}
+				},
+				{
+					"path": "grid",
+					"style": {
+						"navigationBarTitleText": "Grid 宫格"
+					}
+				},
+				{
+					"path": "waterfall",
+					"style": {
+						"navigationBarTitleText": "Waterfall 瀑布流"
+					}
+				},
+				{
+					"path": "list",
+					"style": {
+						"navigationBarTitleText": "List 列表"
+					}
+				}
+			]
+		},
+		{
+			"root": "pages/demo/view",
+			"pages": [
+				{
+					"path": "popup",
+					"style": {
+						"navigationBarTitleText": "Popup 弹出层"
+					}
+				},
+				{
+					"path": "swiper",
+					"style": {
+						"navigationBarTitleText": "Swiper 滑块视图"
+					}
+				},
+				{
+					"path": "badge",
+					"style": {
+						"navigationBarTitleText": "Badge 标记"
+					}
+				},
+				{
+					"path": "avatar",
+					"style": {
+						"navigationBarTitleText": "Avatar 头像"
+					}
+				},
+				{
+					"path": "slider",
+					"style": {
+						"navigationBarTitleText": "Slider 滑块"
+					}
+				},
+				{
+					"path": "progress",
+					"style": {
+						"navigationBarTitleText": "Progress 进度条"
+					}
+				},
+				{
+					"path": "noticebar",
+					"style": {
+						"navigationBarTitleText": "Noticebar 通知栏"
+					}
+				},
+				{
+					"path": "countdown",
+					"style": {
+						"navigationBarTitleText": "Countdown 倒计时"
+					}
+				}
+			]
+		},
+		{
+			"root": "pages/demo/advanced",
+			"pages": [
+				{
+					"path": "list-index",
+					"style": {
+						"navigationBarTitleText": "List-Index 索引列表"
+					}
+				}
+			]
+		}
+	], */
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "研知音",
+		"navigationBarBackgroundColor": "#fff"
+	},
+	"tabBar": {
+		"color": "#909399",
+		"selectedColor": "#303133",
+		"backgroundColor": "#FFFFFF",
+		"borderStyle": "black",
+		"list": [{
+				"pagePath": "pages/news/index"
+				/* "iconPath": "static/img/home.png",
+				"selectedIconPath": "static/img/homeHL.png",
+				"text": "听新闻" */
+			},
+			{
+				"pagePath": "pages/index/index"
+				/* "iconPath": "static/uview/example/js.png",
+				"selectedIconPath": "static/uview/example/js_select.png",
+				"midButton": true,
+				"text": "听知识点" */
+			},
+			{
+				"pagePath": "pages/index/practice"
+				/* "iconPath": "static/uview/example/template.png",
+				"selectedIconPath": "static/uview/example/template_select.png",
+				"text": "练习" */
+			}
+		]
+	},
+	"easycom": {
+		"^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue",
+		"cl-(.*)": "@/cool/ui/components/$1/$1.vue"
+		
+		/* "autoscan": true,
+		"custom": {
+			"cl-(.*)": "@/cool/ui/components/$1/$1.vue",
+			"^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
+		} */
+		
+	}
+	
+}

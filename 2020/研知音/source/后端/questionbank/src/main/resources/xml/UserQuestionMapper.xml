@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.java.project.mapper.UserQuestionMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.java.project.entity.UserQuestion">
+        <id column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="question_id" property="questionId" />
+        <result column="answer1" property="answer1" />
+        <result column="answer2" property="answer2" />
+        <result column="answer3" property="answer3" />
+        <result column="collect" property="collect" />
+        <result column="wrong" property="wrong" />
+        <result column="mark" property="mark" />
+        <result column="create_at" property="createAt" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, user_id, question_id, answer1, answer2, answer3, collect, wrong, mark, create_at
+    </sql>
+
+    <update id="deleteByExamId">
+     update user_question,exam_question set user_question.answer1=''  where exam_question.question_id=user_question.question_id and exam_question.exam_id=#{eid} and user_question.user_id=#{uid};
+    </update>
+
+</mapper>

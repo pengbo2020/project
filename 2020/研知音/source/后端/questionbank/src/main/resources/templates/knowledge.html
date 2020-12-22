@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- <link rel="stylesheet" th:href="@{/layui/css/layui.css}" >-->
+    <link rel="stylesheet" href="../static/layui/css/layui.css">
+</head>
+<body>
+<form class="layui-form" action="">
+<div class="layui-form-item">
+    <label class="layui-form-label">表</label>
+    <div class="layui-input-inline">
+        <input  class="layui-input-inline"  type="text" id="num">
+    </div>
+</div>
+
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">题目</label>
+        <div class="layui-input-block" contenteditable="true">
+            <textarea placeholder="题目" class="layui-textarea" id="input" οninput="autoTextAreaHeight(this)"></textarea>
+        </div>
+    </div>
+</form>
+<button id="add">预览</button>
+<div id="brower"></div>
+<script src="../static/jquery.js"></script>
+<script src="../static/layui/layui.js" ></script>
+<script>
+    layui.use('form', function(){});
+    var brower =  $("#brower");
+  $("#add").on("click",function(){
+      var input = $("#input").val();
+     brower.append($("<text></text>").text($("#input").val()));
+      console.log();
+     brower.append($("<button id='addKnow' onclick='addKnowledge()'> 添加知识点</button>"));
+  });
+
+  function addKnowledge()
+  {
+
+      var num = $("#num").val();
+      var input = $("#input").val();
+      var match = input.match(/考点([\s\S]*?)考题位置/g)[0];
+      var e = match.replace(/\s+/g, "").replace("考点", "").replace("考题位置", "");
+
+         $.post("/addKnowledge",
+             {
+                 tableNum:1,
+                 knowledge:e,
+                 detail:input,
+             },
+             function (result) {
+                 //加载后台返回的List集合数据
+                 if(result.code==200)
+                 {
+                     alert("添加成功");
+                 }
+
+             },
+             "json"
+         );
+
+  }
+</script>
+</body>
+</html>

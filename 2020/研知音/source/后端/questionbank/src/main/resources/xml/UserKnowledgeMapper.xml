@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.java.project.mapper.UserKnowledgeMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.java.project.entity.UserKnowledge">
+        <id column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="knowledge_id" property="knowledgeId" />
+        <result column="learned" property="learned" />
+        <result column="play_time" property="playTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, user_id, knowledge_id, learned, play_time
+    </sql>
+
+    <select id="selectUNum" resultType="int">
+        select count(user_knowledge.knowledge_id) from user_knowledge,chapter_knowledge where user_knowledge.knowledge_id=chapter_knowledge.knowledge_basic_id and user_knowledge.user_id=#{uid} and chapter_knowledge.chapter_id in (select id from chapter where pid in( select id from chapter where pid=#{pid}))
+    </select>
+
+</mapper>

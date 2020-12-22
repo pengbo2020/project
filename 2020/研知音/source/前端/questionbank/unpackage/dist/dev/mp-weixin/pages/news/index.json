@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "uni-load-more": "/components/uni-load-more/uni-load-more",
+    "u-tabbar": "/uview-ui/components/u-tabbar/u-tabbar",
+    "uni-fab": "/components/uni-fab/uni-fab"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "考 试",
+  "usingComponents": {
+    "cl-card": "/cool/ui/components/card/card",
+    "cl-noticebar": "/cool/ui/components/noticebar/noticebar",
+    "u-tabbar": "/uview-ui/components/u-tabbar/u-tabbar"
+  }
+}

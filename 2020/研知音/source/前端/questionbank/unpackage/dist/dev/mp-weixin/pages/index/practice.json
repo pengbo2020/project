@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "u-icon": "/uview-ui/components/u-icon/u-icon",
+    "cl-popup": "/cool/ui/components/popup/popup",
+    "cl-card": "/cool/ui/components/card/card",
+    "cl-row": "/cool/ui/components/row/row",
+    "cl-col": "/cool/ui/components/col/col",
+    "cl-icon": "/cool/ui/components/icon/icon",
+    "u-tabbar": "/uview-ui/components/u-tabbar/u-tabbar"
+  }
+}

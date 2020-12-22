@@ -1,0 +1,17 @@
+{
+  "usingComponents": {
+    "cl-avatar-group": "/cool/ui/components/avatar-group/avatar-group",
+    "cl-avatar": "/cool/ui/components/avatar/avatar",
+    "u-icon": "/uview-ui/components/u-icon/u-icon",
+    "uni-swiper-dot": "/components/uni-swiper-dot/uni-swiper-dot",
+    "cl-popup": "/cool/ui/components/popup/popup",
+    "cl-card": "/cool/ui/components/card/card",
+    "cl-row": "/cool/ui/components/row/row",
+    "cl-col": "/cool/ui/components/col/col",
+    "cl-icon": "/cool/ui/components/icon/icon",
+    "u-count-down": "/uview-ui/components/u-count-down/u-count-down",
+    "uni-countdown": "/components/uni-countdown/uni-countdown",
+    "u-tabbar": "/uview-ui/components/u-tabbar/u-tabbar",
+    "uni-section": "/components/uni-section/uni-section"
+  }
+}

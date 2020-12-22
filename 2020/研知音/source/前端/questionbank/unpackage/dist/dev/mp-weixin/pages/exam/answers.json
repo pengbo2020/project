@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "答 案",
+  "usingComponents": {
+    "cl-card": "/cool/ui/components/card/card",
+    "cl-noticebar": "/cool/ui/components/noticebar/noticebar",
+    "cl-icon": "/cool/ui/components/icon/icon",
+    "u-tabbar": "/uview-ui/components/u-tabbar/u-tabbar"
+  }
+}

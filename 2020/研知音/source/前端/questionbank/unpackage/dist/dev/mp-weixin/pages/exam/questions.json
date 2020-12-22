@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "cl-tabs": "/cool/ui/components/tabs/tabs",
+    "cl-tab-pane": "/cool/ui/components/tab-pane/tab-pane",
+    "cl-list": "/cool/ui/components/list/list",
+    "cl-icon": "/cool/ui/components/icon/icon"
+  }
+}

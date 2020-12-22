@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.java.project.mapper.KnowledgeDescMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.java.project.entity.KnowledgeDesc">
+        <id column="id" property="id" />
+        <result column="knowledge_basic_id" property="knowledgeBasicId" />
+        <result column="desc_name" property="descName" />
+        <result column="desc_detail" property="descDetail" />
+        <result column="creator" property="creator" />
+        <result column="create_at" property="createAt" />
+        <result column="update_at" property="updateAt" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, knowledge_basic_id, desc_name, desc_detail, creator, create_at, update_at
+    </sql>
+
+</mapper>

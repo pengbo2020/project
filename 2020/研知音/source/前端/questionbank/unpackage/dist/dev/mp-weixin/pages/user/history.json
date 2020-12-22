@@ -1,0 +1,13 @@
+{
+  "navigationBarTitleText": "历 史",
+  "usingComponents": {
+    "cl-tabs": "/cool/ui/components/tabs/tabs",
+    "cl-tab-pane": "/cool/ui/components/tab-pane/tab-pane",
+    "u-cell-group": "/uview-ui/components/u-cell-group/u-cell-group",
+    "u-cell-item": "/uview-ui/components/u-cell-item/u-cell-item",
+    "cl-popup": "/cool/ui/components/popup/popup",
+    "cl-card": "/cool/ui/components/card/card",
+    "cl-row": "/cool/ui/components/row/row",
+    "cl-col": "/cool/ui/components/col/col"
+  }
+}

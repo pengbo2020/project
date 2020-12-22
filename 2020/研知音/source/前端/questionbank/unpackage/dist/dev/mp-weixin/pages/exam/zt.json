@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "真 题",
+  "usingComponents": {
+    "u-cell-group": "/uview-ui/components/u-cell-group/u-cell-group",
+    "u-cell-item": "/uview-ui/components/u-cell-item/u-cell-item",
+    "cl-popup": "/cool/ui/components/popup/popup",
+    "cl-card": "/cool/ui/components/card/card",
+    "cl-row": "/cool/ui/components/row/row",
+    "cl-col": "/cool/ui/components/col/col"
+  }
+}

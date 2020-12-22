@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "cl-popup": "/cool/ui/components/popup/popup",
+    "uni-section": "/components/uni-section/uni-section"
+  }
+}

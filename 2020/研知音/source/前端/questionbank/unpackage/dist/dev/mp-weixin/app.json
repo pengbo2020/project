@@ -1,0 +1,71 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/exam/answers",
+    "pages/exam/downloadfile",
+    "pages/exam/start",
+    "pages/user/history",
+    "pages/note/modify",
+    "pages/user/questions",
+    "pages/user/questionHistory",
+    "pages/exam/questions",
+    "pages/exam/questionList",
+    "pages/exam/download",
+    "pages/knowledge/index",
+    "components/global",
+    "pages/exam/zt",
+    "pages/user/history_new",
+    "pages/chapter/index",
+    "pages/chapter/questions",
+    "pages/exam/historyExamQuestions",
+    "pages/news/index",
+    "pages/news/newsDetail",
+    "pages/knowledge/chapterKnowledge",
+    "pages/exam/examResult",
+    "pages/index/practice",
+    "pages/exam/startExam",
+    "pages/user/chapterQuestions",
+    "pages/user/questionsHistory",
+    "pages/user/examHistory",
+    "pages/knowledge/collection",
+    "pages/knowledge/collectionKnow",
+    "pages/knowledge/index_new",
+    "pages/news/newsDetail_new"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "研知音",
+    "navigationBarBackgroundColor": "#fff"
+  },
+  "tabBar": {
+    "color": "#909399",
+    "selectedColor": "#303133",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/news/index"
+      },
+      {
+        "pagePath": "pages/index/index"
+      },
+      {
+        "pagePath": "pages/index/practice"
+      }
+    ]
+  },
+  "permission": {},
+  "requiredBackgroundModes": [
+    "audio"
+  ],
+  "usingComponents": {
+    "u-radio": "/uview-ui/components/u-radio/u-radio",
+    "u-radio-group": "/uview-ui/components/u-radio-group/u-radio-group",
+    "cu-custom": "/colorui/components/cu-custom",
+    "choose": "/components/template/image/choose",
+    "compress": "/components/template/image/compress",
+    "page-head": "/components/page-head"
+  },
+  "sitemapLocation": "sitemap56.json"
+}

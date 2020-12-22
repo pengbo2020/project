@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}" >
+</head>
+<body>
+<form class="layui-form" action="">
+<div class="layui-form-item">
+    <label class="layui-form-label">科目</label>
+    <div class="layui-input-inline">
+        <select name="quiz1" id="subject" lay-filter="test">
+            <option value="1" selected>马克思主义基本原理概论</option>
+            <option value="2" >毛泽东思想和中国特色社会主义理论概论</option>
+            <option value="3">中国近代史纲要</option>
+            <option value="4">思想道德修养与法律基础</option>
+            <option value="5">当代世界经济与政治</option>
+        </select>
+    </div>
+    <div class="layui-input-inline">
+        <select name="quiz2" id="chapter">
+
+        </select>
+    </div>
+
+        <div class="layui-inline">
+            <button type="button" class="layui-btn layui-btn-primary" id="add">添加章节</button>
+            <div class="layui-input-inline">
+                <input type="tel" name="phone"  autocomplete="off" class="layui-input" id="addChapter">
+            </div>
+        </div>
+    <div class="layui-input-inline">
+        <select name="quiz3" id="type">
+            <option value="0">单选</option>
+            <option value="1">多选</option>
+            <option value="2">分析</option>
+        </select>
+    </div>
+</div>
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">题目</label>
+        <div class="layui-input-block">
+            <textarea placeholder="题目" class="layui-textarea" id="input"></textarea>
+        </div>
+    </div>
+
+
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">答案</label>
+        <div class="layui-input-block">
+            <textarea placeholder="答案" class="layui-textarea" id="answer"></textarea>
+        </div>
+    </div>
+
+</form>
+<button id="add1">点击添加</button>
+<script th:src="@{/jquery.js}" ></script>
+<script th:src="@{/layui/layui.js}" ></script>
+<script>
+    //JavaScript代码区域
+
+    layui.use('form', function(){
+        var form = layui.form;
+        var pid;
+        form.on('select(test)', function(data){
+           // alert(data.value); // 获取选中的值
+            console.log(data);
+            $.get("/chapter/get",
+                {
+                    pid:data.value
+                },
+                function (date) {
+                    //加载后台返回的List集合数据
+                    date=date.data;
+                    $("#chapter").empty();
+                    for (var i = 0; i < date.length; i++) {
+                        /* var td = $("<td></td>").text(date[i].goodsCode);
+                         var td2 = $("<td></td>").text(date[i].goodsName);
+                         var td3 = $("<td></td>").text(date[i].goodsStandard);
+                         var td4 = $("<td></td>").text(date[i].goodsNumber);
+                         var td5 = $("<td></td>").text(date[i].goodsSupplierCode);
+                         var tr = $("<tr></tr>").append(td, td2,td3,td4,td5);
+                         $('tbody').append(tr);*/
+                        var option=null;
+                        if(i==0){
+                            option = $("<option selected value='"+date[i].id+"'>"+date[i].name+"</option>");
+                        }else{
+                            option = $("<option value='"+date[i].id+"'>"+date[i].name+"</option>");
+                        }
+
+
+                        $("#chapter").append(option);
+                    }
+                    form.render();
+                },
+                "json"
+            );
+
+
+
+        });
+        $("chapter").on("click",function(){
+           console.log(111);
+        });
+
+
+
+        $("#add").on("click",function(){
+            console.log($("#addChapter").val());
+            var name=$("#addChapter").val();
+            pid=$("#subject").attr("value");
+            console.log(pid);
+
+            $.get("/addChapter",
+                {
+                    pid:pid,
+                    name:name
+                },
+                function (result) {
+                    //加载后台返回的List集合数据
+                    if(result.code==200)
+                    {
+                        alert("添加成功");
+                    }
+
+                },
+                "json"
+            );
+
+        });
+
+    });
+
+
+
+
+
+
+
+
+
+
+    function getQuestionAndAnswer() {
+        var questionList = new Array();
+        var question = $("#input").val();
+        question += "\n";
+        var gqid = question.match(/\d+\./g);
+        console.log(gqid);
+        for (i = 0; i < gqid.length; ++i) {
+            gqid[i] = gqid[i].replace(".", "");
+            questionList[gqid[i]]={
+                id:null,
+                title:null,
+                optionA:null,
+                optionB:null,
+                optionC:null,
+                optionD:null,
+                type:null,
+                answer1:null,
+                answer2:null,
+                parse:null,
+                diff:null,
+                md5:null,
+                knowledge:null,
+                year:null,
+                source:0,
+                hasSubTheme:0,
+                isNormal:0,
+                isKnow:0
+            };
+
+            if(i<gqid.length-1) {
+                var re = new RegExp(gqid[i] + "\\.([\\s\\S]*?)D([\\s\\S]*?)" + gqid[i + 1], "g");
+            }else{
+                re = new RegExp(gqid[i] + "\\.([\\s\\S]*?)D([\\s\\S]*?)\\n", "g");
+            }
+            var q = question.match(re)[0];
+            var title= q.match(/\d+\.([\s\S]*?)A/ug);
+            title=title[0].split(".")[1].replace(/\s+/g, "").replace("A", "");
+            var option_a = q.match(/A.([\s\S]*?)[\s|B|\n]/g);
+            option_a = option_a[0].substring(2, option_a[0].length).replace(/\s+/g, "").replace("B", "");
+            var option_b = q.match(/B.([\s\S]*?)[\s|C|\n]/g);
+            option_b = option_b[0].substring(2, option_b[0].length).replace(/\s+/g, "").replace("C", "");
+            var option_c = q.match(/C.([\s\S]*?)[\s|C|\n]/g);
+            option_c = option_c[0].substring(2, option_c[0].length).replace(/\s+/g, "").replace("D", "");
+            var option_d = q.match(/D.([\s\S]*?)[\s|\n|.]/g);
+            option_d = option_d[0].substring(2, option_d[0].length).replace(/\s+/g, "");
+            questionList[gqid[i]].title=title;
+            questionList[gqid[i]].optionA=option_a;
+            questionList[gqid[i]].optionB=option_b;
+            questionList[gqid[i]].optionC=option_c;
+            questionList[gqid[i]].optionD=option_d;
+        }
+
+        var answer = $("#answer").val();
+        var idlist = answer.match(/\d+.*答案/g);
+
+        for (j = 0; j < idlist.length; ++j) {
+            idlist[j] = idlist[j].match(/\d+/)[0];
+        }
+        for (j = 0; j < idlist.length; ++j) {
+            if (j < idlist.length - 1) {
+                re = new RegExp(idlist[j] + ".*答案([\\s\\S]*?)\\n" + idlist[j + 1], "g");
+            } else {
+                re = new RegExp(idlist[idlist.length - 1] + ".*答案([\\s\\S]*?)。", "g");
+            }
+            tmp = answer.match(re)[0];
+            id = tmp.match(/\d+/);
+            ans = tmp.match(/答案.*([\s\S]*?)\n/);
+            knowledge = tmp.match(/P([\s\S]*?)\n/);
+            id = id[0];
+            ans = ans[0].match(/[A-Z]*\n/)[0].replace("\n", "");
+            parse = tmp.match(/简析.([\s\S]*)。/);
+
+            if (knowledge) {
+                knowledge = "P" + knowledge[1].replace("\n", "");
+            }
+            if (parse) {
+                parse = parse[1] + "。";
+            }
+
+            if (questionList[id] != null) {
+                questionList[id].answer1 = ans;
+                questionList[id].knowledge = knowledge;
+                questionList[id].parse = parse;
+            }
+
+        }
+        return questionList;
+    }
+
+    function getFxQuestionAndAnswer()
+    {
+        var questionList = new Array();
+        var question = $("#input").val();
+        question += "ASD";
+        var gqid = question.match(/\d+\./g);
+        console.log(gqid);
+        for (i = 0; i < gqid.length; ++i) {
+            gqid[i] = gqid[i].replace(".", "");
+            questionList[gqid[i]] = {
+                id:null,
+                title:null,
+                optionA:null,
+                optionB:null,
+                optionC:null,
+                optionD:null,
+                type:null,
+                answer1:null,
+                answer2:null,
+                parse:null,
+                diff:null,
+                md5:null,
+                knowledge:null,
+                year:null,
+                source:0,
+                hasSubTheme:0,
+                isNormal:0,
+                isKnow:0
+            };
+            if (i < gqid.length - 1) {
+                var re = new RegExp(gqid[i] + "\\.([\\s\\S]*?)[？|。]\\n" + gqid[i + 1], "g");
+            } else {
+                re = new RegExp(gqid[i] + "\\.([\\s\\S]*?)(2)([\\s\\S]*?)ASD", "g");
+            }
+            var q = question.match(re)[0];
+            re = new RegExp(gqid[i] + "\\.([\\s\\S]*?)1[)|）]", "g");
+            title = q.match(re)[0].replace(gqid[i] + ".", "").replace("(1)", "").replace("（1）", "");
+            option = q.match(/[1-3][)|）]([\s\S]*?)[？|。]/g);
+            option_a = (option[0] != null) ? option[0].replace("1)", "").replace("1）", "") : null;
+            option_b = (option[1] != null) ? option[1].replace("2)", "").replace("2）", "") : null;
+            option_c = (option[2] != null) ? option[2].replace("3)", "").replace("3）", "") : null;
+            questionList[gqid[i]].title = title;
+            questionList[gqid[i]].optionA = option_a;
+            questionList[gqid[i]].optionB = option_b;
+            questionList[gqid[i]].optionC = option_c;
+
+        }
+
+        var answer = $("#answer").val();
+        var idlist = answer.match(/(\d+).*答案/g);
+        for(i=0;i<idlist.length;++i)
+        {
+            idlist[i] = idlist[i].split(".")[0];
+        }
+        for(i=0;i<idlist.length;++i)
+        {
+            idlist[i] = idlist[i].split(".")[0];
+            if(i<idlist.length-1)
+            {
+                re =new RegExp(idlist[i]+"\\.([\\s\\S]*?)\\n"+idlist[i+1]+"\\.","g");
+            }else{
+                re =new RegExp(idlist[i]+"\\.([\\s\\S]*?)。\\n","g");
+            }
+            var parse = answer.match(re)[0].replace(idlist[i]+".","").replace(idlist[i+1]+".","");
+            if(questionList[idlist[i]]!=null)
+            {
+                questionList[idlist[i]].parse=parse;
+            }
+        }
+        console.log(questionList);
+
+        return questionList;
+    }
+
+    $("#add1").on("click",function(){
+        var pid = $("#subject").attr("value");
+        var type = $("#type").attr("value");
+        var question = null;
+        var id =$("#chapter").attr("value");
+
+        console.log(pid);
+        console.log(type);
+        console.log(question);
+        console.log(id);
+        if(type==2)
+        {
+            question = getFxQuestionAndAnswer();
+        }else{
+            question = getQuestionAndAnswer();
+        }
+        var data={
+            pid:pid,
+            id:id,
+            type:type,
+            questions:question
+        };
+
+
+        $.ajax({
+            url:"/addQuestion",
+            type:"POST",
+            data:JSON.stringify(data),
+            contentType:"application/json; charset=utf-8",
+            dataType:"json",
+            success: function(res){
+            console.log(res);
+            }});
+
+      /*  $.post("/addQuestion",
+            {
+                pid:$("#subject").attr("value"),
+                id:id,
+                type:type,
+                question:question
+            },
+            function (result) {
+                //加载后台返回的List集合数据
+                console.log(result);
+                if(result.code==200)
+                {
+                    alert("添加成功");
+                }
+
+            },
+            "json"
+        );*/
+        console.log(getQuestionAndAnswer());
+    });
+
+
+
+
+</script>
+</body>
+</html>

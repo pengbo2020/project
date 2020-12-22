@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.java.project.mapper.QuestionMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.java.project.entity.Question">
+        <id column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="option_a" property="optionA"/>
+        <result column="option_b" property="optionB"/>
+        <result column="option_c" property="optionC"/>
+        <result column="option_d" property="optionD"/>
+        <result column="type" property="type"/>
+        <result column="answer1" property="answer1"/>
+        <result column="answer2" property="answer2"/>
+        <result column="parse" property="parse"/>
+        <result column="diff" property="diff"/>
+        <result column="md5" property="md5"/>
+        <result column="knowledge" property="knowledge"/>
+        <result column="year" property="year"/>
+        <result column="source" property="source"/>
+        <result column="hasSubtheme" property="hasSubtheme"/>
+        <result column="isNormal" property="isNormal"/>
+        <result column="isKnow" property="isKnow"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, title, option_a, option_b, option_c, option_d, type, answer1, answer2, parse, diff, md5, knowledge, year, source, hasSubtheme, isNormal, isKnow
+    </sql>
+
+    <select id="selectAllSingleId" resultType="Integer">
+        select id from question where type=0
+    </select>
+
+    <select id="selectAllMultiId" resultType="Integer">
+        select id from question where type=1
+    </select>
+
+    <select id="selectAllAnalysisId" resultType="Integer">
+        select id from question where type=2
+    </select>
+
+    <select id="selectQuestions" resultType="com.java.project.entity.Question">
+     select question.* from question,exam_question where question.id = exam_question.question_id and exam_question.exam_id=#{eid}
+    </select>
+
+    <select id="selectQuestionsByType" resultType="com.java.project.entity.Question">
+         <choose>
+             <when test="wrong==1 and collect==0 and mark==0">
+                 select question.* from question ,user_question where user_question.user_id=#{uid} and user_question.question_id=question.id and user_question.wrong=1  limit #{pn},#{ps}
+             </when>
+             <when test="wrong==0 and collect==1 and mark==0">
+                 select question.* from question ,user_question where user_question.user_id=#{uid} and user_question.question_id=question.id and user_question.collect=1  limit #{pn},#{ps}
+             </when>
+             <when test="wrong==0 and collect==0 and mark==1">
+                 select question.* from question ,user_question where user_question.user_id=#{uid} and user_question.question_id=question.id and user_question.mark=1  limit #{pn},#{ps}
+             </when>
+         </choose>
+
+
+
+    </select>
+
+     <select id="selectQuestionsByChapterId" resultType="com.java.project.entity.Question">
+      select question.*from question,chapter_question where question.id = chapter_question.question_id and chapter_question.chapter_id =#{pid} limit #{pn},#{ps}
+    </select>
+
+
+    <select id="getHasDoneQuestionsByChapterId" resultType="com.java.project.entity.Question">
+      select question.*from question,chapter_question,user_question where chapter_question.chapter_id=#{pid} and chapter_question.question_id=user_question.question_id and user_question.user_id=#{uid} and user_question.question_id =question.id limit #{pn},#{ps}
+    </select>
+
+
+
+    <select id="selectQuestionsByTypeAndChapterId" resultType="com.java.project.entity.Question">
+        <choose>
+            <when test="wrong==1 and collect==0 and mark==0">
+                select question.* from question ,user_question,chapter_question where chapter_question.chapter_id=#{cid} and user_question.user_id=#{uid} and chapter_question.question_id =user_question.question_id and  user_question.question_id=question.id and user_question.wrong=1  limit #{pn},#{ps}
+            </when>
+            <when test="wrong==0 and collect==1 and mark==0">
+                select question.* from question ,user_question,chapter_question where chapter_question.chapter_id=#{cid} and user_question.user_id=#{uid} and chapter_question.question_id =user_question.question_id and  user_question.question_id=question.id and user_question.collect=1  limit #{pn},#{ps}
+            </when>
+            <when test="wrong==0 and collect==0 and mark==1">
+                select question.* from question ,user_question,chapter_question where chapter_question.chapter_id=#{cid} and user_question.user_id=#{uid} and chapter_question.question_id =user_question.question_id and  user_question.question_id=question.id and user_question.mark=1  limit #{pn},#{ps}
+            </when>
+        </choose>
+
+
+
+    </select>
+
+
+</mapper>

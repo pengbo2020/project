@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.java.project.mapper.ChapterMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.java.project.entity.Chapter">
+        <id column="id" property="id" />
+        <result column="pid" property="pid" />
+        <result column="name" property="name" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, pid, name
+    </sql>
+
+    <select id="selectChapters" resultType="com.java.project.vo.ChapterVo">
+       select chapter.*,count(user_question.question_id) questionNum from chapter,chapter_question,user_question where chapter.id=chapter_question.chapter_id and chapter_question.question_id = user_question.question_id and user_question.user_id=#{uid} and chapter.pid=#{pid} group by chapter.id
+    </select>
+
+    <select id="selectWrongQuestionChapter" resultType="com.java.project.entity.Chapter">
+     select *from chapter where id in (select distinct (chapter_question.chapter_id) id  from  chapter_question,user_question where chapter_question.question_id=user_question.question_id and user_question.user_id=#{uid} and user_question.wrong=1) and pid = #{pid}
+    </select>
+    <select id="selectCollectQuestionChapter" resultType="com.java.project.entity.Chapter">
+     select *from chapter where id in (select distinct (chapter_question.chapter_id) id  from  chapter_question,user_question where chapter_question.question_id=user_question.question_id and user_question.user_id=#{uid} and user_question.collect=1) and pid = #{pid}
+    </select>
+    <select id="selectMarkQuestionChapter" resultType="com.java.project.entity.Chapter">
+     select *from chapter where id in (select distinct (chapter_question.chapter_id) id  from  chapter_question,user_question where chapter_question.question_id=user_question.question_id and user_question.user_id=#{uid} and user_question.mark=1) and pid = #{pid}
+    </select>
+
+    <select id="selectChapterQuestionNum" resultType="int">
+        <choose>
+            <when test="wrong==1 and collect==0 and mark==0">
+                select count(user_question.id) from user_question,chapter_question where user_question.question_id=chapter_question.question_id and chapter_question.chapter_id=#{cid} and user_question.user_id=#{uid} and user_question.wrong=1
+            </when>
+            <when test="wrong==0 and collect==1 and mark==0">
+                select count(user_question.id) from user_question,chapter_question where user_question.question_id=chapter_question.question_id and chapter_question.chapter_id=#{cid} and user_question.user_id=#{uid} and user_question.collect=1
+            </when>
+            <when test="wrong==0 and collect==0 and mark==1">
+                select count(user_question.id) from user_question,chapter_question where user_question.question_id=chapter_question.question_id and chapter_question.chapter_id=#{cid} and user_question.user_id=#{uid} and user_question.mark=1
+            </when>
+        </choose>
+    </select>
+
+    <select id="selectTotalChapterQuestionNum" resultType="com.java.project.vo.DataVo">
+      select chapter.pid,count(question.id) num from question,chapter,chapter_question where chapter.id=chapter_question.chapter_id and chapter_question.question_id=question.id group by chapter.pid
+    </select>
+
+
+
+    <select id="selectQuestionNumByPid" resultType="com.java.project.vo.DataVo">
+       select chapter.id pid,count(question.id) num from question,chapter,chapter_question where chapter.id=chapter_question.chapter_id and chapter_question.question_id=question.id and chapter.pid=#{pid} group by chapter.id
+    </select>
+
+
+    <select id="selectUserChapterByType" resultType="com.java.project.vo.QuestionNum">
+        <choose>
+            <when test="wrong==1 and collect==0 and mark==0">
+                select chapter.*, count(user_question.user_id) cQnum,count(user_question.id) uQnum from user_question,chapter,chapter_question where chapter.id=chapter_question.chapter_id and chapter_question.question_id=user_question.question_id and chapter.pid=#{pid} and user_question.user_id=#{uid} and user_question.wrong=1 group by chapter.id
+            </when>
+            <when test="wrong==0 and collect==1 and mark==0">
+                select chapter.*, count(user_question.user_id) cQnum,count(user_question.id) uQnum from user_question,chapter,chapter_question where chapter.id=chapter_question.chapter_id and chapter_question.question_id=user_question.question_id and chapter.pid=#{pid} and user_question.user_id=#{uid} and user_question.collect=1 group by chapter.id
+            </when>
+            <when test="wrong==0 and collect==0 and mark==1">
+                select chapter.*, count(user_question.user_id) cQnum,count(user_question.id) uQnum from user_question,chapter,chapter_question where chapter.id=chapter_question.chapter_id and chapter_question.question_id=user_question.question_id and chapter.pid=#{pid} and user_question.user_id=#{uid} and user_question.mark=1 group by chapter.id
+            </when>
+        </choose>
+
+
+     </select>
+
+    <select id="selectCidAndQid" resultType="com.java.project.vo.DataVo">
+      select exam_question.question_id pid,chapter_question.chapter_id num from exam_question,chapter_question where exam_question.question_id=chapter_question.question_id and exam_question.exam_id=#{eid}
+    </select>
+
+
+
+</mapper>
